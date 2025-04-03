@@ -332,7 +332,7 @@ module apb_adv_timer #(
   logic [N_TIMEREXTSIG-1:0] s_timer0_signal;
   assign s_timer0_signal = {ch_3_o,ch_2_o,ch_1_o,ch_0_o,ext_sig_i};
 
-  pulp_clock_gating i_clk_gate_timer0
+  tc_clk_gating i_clk_gate_timer0
   (
     .clk_i(HCLK),
     .en_i(s_timer0_clk_en),
@@ -390,7 +390,7 @@ module apb_adv_timer #(
   logic [N_TIMEREXTSIG-1:0] s_timer1_signal;
   assign s_timer1_signal = {ch_3_o,ch_2_o,ch_1_o,ch_0_o,ext_sig_i};
 
-  pulp_clock_gating i_clk_gate_timer1
+  tc_clk_gating i_clk_gate_timer1
   (
     .clk_i(HCLK),
     .en_i(s_timer1_clk_en),
@@ -448,7 +448,7 @@ module apb_adv_timer #(
   logic [N_TIMEREXTSIG-1:0] s_timer2_signal;
   assign s_timer2_signal = {ch_3_o,ch_2_o,ch_1_o,ch_0_o,ext_sig_i};
 
-  pulp_clock_gating i_clk_gate_timer2
+  tc_clk_gating i_clk_gate_timer2
   (
     .clk_i(HCLK),
     .en_i(s_timer2_clk_en),
@@ -506,7 +506,7 @@ module apb_adv_timer #(
   logic [N_TIMEREXTSIG-1:0] s_timer3_signal;
   assign s_timer3_signal = {ch_3_o,ch_2_o,ch_1_o,ch_0_o,ext_sig_i};
 
-  pulp_clock_gating i_clk_gate_timer3
+  tc_clk_gating i_clk_gate_timer3
   (
     .clk_i(HCLK),
     .en_i(s_timer3_clk_en),
