@@ -71,7 +71,7 @@ module reg_adv_timer_wrap #(
   apb_adv_timer i_apb_adv_timer (
   .HCLK             ( clk_i   ),
   .HRESETn          ( rst_ni  ),
-  .PADDR            ( adv_timer_apb_req.paddr[4:2]  ),
+  .PADDR            ( adv_timer_apb_req.paddr       ),
   .PWDATA           ( adv_timer_apb_req.pwdata      ),
   .PWRITE           ( adv_timer_apb_req.pwrite          ),
   .PSEL             ( adv_timer_apb_req.psel            ),
