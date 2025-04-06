@@ -2,51 +2,61 @@
 
 ## Overview
 
-The **APB Advanced Timer** is a timer module designed to interface with an **APB bus**. It consists of multiple timer blocks, each capable of independently counting based on configurable settings.
+The **APB Advanced Timer** is a highly flexible timer module designed for integration with an **APB (Advanced Peripheral Bus)**. It consists of multiple independent timer blocks, each capable of counting based on configurable settings.
 
-This README describes the configuration and block diagrams of the APB Advanced Timer, along with how it can be integrated into a system using the **OBI (Open Bus Interface)**.
+This README provides an overview of the APB Advanced Timer, its block diagrams, and how it can be seamlessly integrated into your system using the **OBI (Open Bus Interface)**.
 
 ---
 
-## Block Diagram: APB Advanced Timer Top View
+## Block Diagrams
 
-The following diagram provides a top view of the **APB Advanced Timer**.
+### APB Advanced Timer Top View
+
+The following diagram provides a top-level view of the **APB Advanced Timer** module. This diagram shows the general structure of the timer, though some configuration connections (e.g., from `adv_timer_apb_if` to the timers and event logic) have been omitted for clarity.
 
 ![Block Diagram: APB Advanced Timer Top View](doc/bd_adv_timer.svg "Block Diagram: APB Advanced Timer Top View")
 
-Note: To avoid too many connections, the configuration lines from `adv_timer_apb_if` to the timers and to the event logic are missing.
+---
+
+### Timer Module Overview
+
+The **APB Advanced Timer** module contains **four independent timer blocks**. These blocks are controlled by internal signals (`s_ctrl_x`), which govern their operation. This allows each timer block to function independently, providing great flexibility for time-based operations.
+
+Note that the configuration signals (`cfg_x`) and control signals (`s_ctrl_x`) are omitted from the diagram to reduce visual complexity.
+
+![Block Diagram: Timer Module](doc/bd_timer.svg "Block Diagram: Timer Module")
 
 ---
 
-## Block Diagram: APB Advanced Timer with OBI Interface
+### APB Advanced Timer with OBI Interface
 
-The following diagram illustrates how to instantiate the `apb_adv_timer` component when using **OBI**.
+This diagram illustrates how to instantiate the **apb_adv_timer** component when integrating with an **OBI (Open Bus Interface)**. The `reg_adv_timer_wrap.sv` file includes the wrapping logic required for this interface, ensuring smooth connectivity between the APB Advanced Timer and an OBI-compatible system.
 
 ![Block Diagram: APB Advanced Timer with OBI Interface](doc/bd_adv_timer_wrap.svg "Block Diagram: APB Advanced Timer with OBI Interface")
 
 ---
 
-## Block Diagram: Timer Module
-
-The APB Advanced Timer module consists of **four independent timer blocks**. Each of these blocks is configured with signals coming from the `ctrl_int` (internal control signals) signal, which dictates their behavior and operation.
-
-![Block Diagram: Timer Module](doc/bd_timer.svg "Block Diagram: Timer Module")
-
-For simplicity, the configuration connections are not shown in the diagram to avoid visual clutter.
-
----
-
 ## Key Features
 
-- **Four Independent Timer Blocks**: The module features four distinct timer blocks that can operate in parallel, providing flexibility for handling multiple time-based tasks in your system.
-- **APB Interface**: The **apb_adv_timer** is designed with an **APB interface** for easy integration with an APB-based system.
-- **OBI Bus Integration**: Although the timer itself uses an APB interface, this module can be connected to an **OBI bus** to allow for greater system-wide communication and control.
-- **Flexible Configuration**: Each timer block can be independently configured to handle various timing requirements, such as different clock sources or time intervals.
+- **Four Independent Timer Blocks**: The APB Advanced Timer features four distinct timer blocks, each capable of operating independently. This allows for parallel execution of multiple timing tasks.
+
+- **APB Interface**: Designed with an **APB interface**, the timer module is easy to integrate into APB-based systems, ensuring seamless communication with other components.
+
+- **OBI Bus Integration**: In addition to the APB interface, the timer can be connected to an **OBI bus** using the [Wrapper](rtl/reg_adv_timer_wrap.sv) file. This enhances its versatility in a range of system configurations.
+
+- **Flexible Configuration**: Each timer block can be independently configured with various parameters, such as different time intervals, allowing for precise control over time-based operations.
 
 ---
 
 ## Conclusion
 
-The **APB Advanced Timer** is a versatile solution for time-based operations in embedded systems. With its **APB interface** and the ability to be connected to the **OBI bus**, it allows for high-performance, flexible time control. The four independent timer blocks further enhance its versatility, enabling multiple simultaneous time-based operations.
+The **APB Advanced Timer** provides a powerful and flexible solution for managing time-based operations in embedded systems. With its four independent timer blocks, **APB interface**, and support for **OBI bus integration**, it offers unparalleled versatility for time-critical tasks.
 
-For detailed configuration or additional implementation examples, please refer to the documentation linked below.
+For detailed configuration options or additional implementation examples, please refer to the documentation linked below.
+
+---
+
+## References
+
+- [Advanced Peripheral Bus (APB) Pulp on Github](https://github.com/pulp-platform/apb)
+- [OBI Bus (Pulp Github)](https://github.com/pulp-platform/obi)
