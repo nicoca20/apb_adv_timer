@@ -41,6 +41,7 @@ module reg_adv_timer_wrap #(
   // Physical interface
   input  logic dft_cg_enable_i,
   input  logic low_speed_clk_i,
+
   input  logic [31:0] ext_sig_i,
   output logic [3:0] events_o,
   output logic [3:0] ch_0_o,
@@ -55,30 +56,30 @@ module reg_adv_timer_wrap #(
   reg_adv_timer_apb_rsp_t adv_timer_apb_rsp;
 
   reg_to_apb #(
-    .reg_req_t  ( reg_req_t             ),
-    .reg_rsp_t  ( reg_rsp_t             ),
-    .apb_req_t  ( reg_adv_timer_apb_req_t    ),
-    .apb_rsp_t  ( reg_adv_timer_apb_rsp_t    )
+    .reg_req_t  ( reg_req_t                      ),
+    .reg_rsp_t  ( reg_rsp_t                      ),
+    .apb_req_t  ( reg_adv_timer_apb_req_t        ),
+    .apb_rsp_t  ( reg_adv_timer_apb_rsp_t        )
   ) i_reg_adv_timer_reg_to_apb (
-    .clk_i,
-    .rst_ni,
-    .reg_req_i,
-    .reg_rsp_o,
-    .apb_req_o  ( adv_timer_apb_req          ),
-    .apb_rsp_i  ( adv_timer_apb_rsp          )
+    .clk_i      ( clk_i                          ),
+    .rst_ni     ( rst_ni                         ),
+    .reg_req_i  ( reg_req_i                      ),
+    .reg_rsp_o  ( reg_rsp_o                      ),
+    .apb_req_o  ( adv_timer_apb_req              ),
+    .apb_rsp_i  ( adv_timer_apb_rsp              )
   );
 
   apb_adv_timer i_apb_adv_timer (
   .HCLK             ( clk_i   ),
   .HRESETn          ( rst_ni  ),
-  .PADDR            ( adv_timer_apb_req.paddr       ),
-  .PWDATA           ( adv_timer_apb_req.pwdata      ),
-  .PWRITE           ( adv_timer_apb_req.pwrite          ),
-  .PSEL             ( adv_timer_apb_req.psel            ),
-  .PENABLE          ( adv_timer_apb_req.penable         ),
-  .PRDATA           ( adv_timer_apb_rsp.prdata      ),
-  .PREADY           ( adv_timer_apb_rsp.pready      ),
-  .PSLVERR          ( adv_timer_apb_rsp.pslverr     ),
+  .PADDR            ( adv_timer_apb_req.paddr    ),
+  .PWDATA           ( adv_timer_apb_req.pwdata   ),
+  .PWRITE           ( adv_timer_apb_req.pwrite   ),
+  .PSEL             ( adv_timer_apb_req.psel     ),
+  .PENABLE          ( adv_timer_apb_req.penable  ),
+  .PRDATA           ( adv_timer_apb_rsp.prdata   ),
+  .PREADY           ( adv_timer_apb_rsp.pready   ),
+  .PSLVERR          ( adv_timer_apb_rsp.pslverr  ),
 
   .dft_cg_enable_i  ( dft_cg_enable_i ),
   .low_speed_clk_i  ( low_speed_clk_i ),
