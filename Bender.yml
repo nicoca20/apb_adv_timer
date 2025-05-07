@@ -23,6 +23,7 @@ sources:
       - rtl/prescaler.sv
       - rtl/timer_cntrl.sv
       - rtl/up_down_counter.sv
+      - rtl/reg_adv_timer_wrap.sv
       # Level 1
       - rtl/timer_module.sv
       # Level 2
