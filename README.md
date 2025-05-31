@@ -36,6 +36,27 @@ This diagram illustrates how to instantiate the **apb_adv_timer** component when
 
 ---
 
+### Comparator Module
+
+This module implements a configurable comparator that triggers an output based on a match between an internal counter and a programmable threshold (`r_comp`). The behavior of the output is determined by the selected operation mode (`r_comp_op`).
+
+#### Operation Modes
+
+- **OP_SET**: Set the output to `1` on match.
+- **OP_TOGRST**: Toggle the output on match; reset to `0` on a second event.
+- **OP_SETRST**: Set the output to `1` on match; reset to `0` on a second event.
+- **OP_TOG**: Toggle the output on each match.
+- **OP_RST**: Reset the output to `0` on match.
+- **OP_TOGSET**: Toggle the output on match; set it to `1` on a second event.
+- **OP_RSTSET**: Reset the output to `0` on match; set it to `1` on a second event.
+
+#### Matching Condition
+
+A **match** occurs when the internal counter value (`timer_count_i`) is equal to the comparison value (`r_comp`) and the timer signal is valid (`timer_valid_i`).
+
+In sawtooth mode (`timer_sawtooth_i = 1`), the second event is identified using the `timer_end_i` signal. Otherwise, a second match is used to trigger the follow-up action.
+
+
 ## Key Features
 
 - **Four Independent Timer Blocks**: The APB Advanced Timer features four distinct timer blocks, each capable of operating independently. This allows for parallel execution of multiple timing tasks.
